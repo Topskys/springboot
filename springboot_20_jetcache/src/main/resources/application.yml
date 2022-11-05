@@ -1,0 +1,51 @@
+server:
+  port: 8002
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+
+  main:  # 解决：Relying upon circular references is discouraged and they are prohibited by default.
+    allow-circular-references: true
+
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+      id-type: auto # 数据库id自增
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+
+
+
+jetcache: # 替代springboot cache
+  statIntervalMinutes: 1 # 几分钟后打印报表日志
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson # key转换器
+      limit: 100 # 可缓存条数
+
+  remote:
+    default:
+      type: redis
+      host: localhost
+      port: 6379
+      keyConvertor: fastjson # key转换器
+      valueEncode: java # 进去转java对象
+      valueDecode: java
+      poolConfig:
+        maxTotal: 50  # 最大连接数
+    sms:
+      type: redis
+      host: localhost
+      port: 6379
+      poolConfig:
+        maxTotal: 50  # 最大连接数

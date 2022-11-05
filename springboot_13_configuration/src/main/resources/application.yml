@@ -1,0 +1,20 @@
+# 数据配置
+servers:
+  port: 8001
+  ipAddress: 192.168.0.2
+  # ipAddress: 192.168.0.2
+  # ipaddress: 192.168.0.2
+  # ip_address: 192.168.0.2
+  # ip-address: 192.168.0.2
+  # IPADDRESS: 192.168.0.2
+  # IP_ADDRESS: 192.168.0.2
+  # IP_ADD_R-E_ss: 192.168.0.2
+  timeout: -1  # 不超时 ms
+  serverTimeOut: 3
+  dataSize: 10 # 默认单位 byte 或 10MB
+
+
+datasource:
+  driverClassName: com.mysql.jdbc.Driver456
+  password: "0127" # int支持二、八、十进制，取：87，因为0开头是八进制，再转十进制故87，改“0127”解决
+

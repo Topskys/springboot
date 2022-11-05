@@ -1,0 +1,61 @@
+server:
+  port: 8002
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+  # 排除热部署目录文件
+  devtools:
+    restart:
+      exclude: static/**,public/**,config/application.yml
+      enabled: true
+
+
+mybatis-plus:
+#  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+      id-type: auto # 数据库id自增
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+
+
+# 运维使用篇
+
+
+# 1.工程打包与运行
+# 打包
+# 右侧maven依赖》》Lifecycle》clean》跳过test点击右上闪电》package》》左侧target有*.jar程序包 // mvn package
+# 运行
+
+# windows
+# 在资源管理器的*.jar程序包目录》》输入cmd》》终端> java -jar *.jar
+# 问题
+# 运行jar包时，报端口被占用？
+# 切换运行端口 java -jar *.jar --server.port=9000 临时属性，多个属性使用空格分隔，注意属性加载优先级
+# 查询端口 netstat -ano
+# 查询指定端口 netstat -ano |findstr "端口号"
+# 查询进程 tasklist
+# 根据进程PID查询进程名称 tasklist |findstr “进程PID号”
+# 根据PID关闭任务 taskkill -f -pid "进程PID号"
+# 根据进程名称关闭任务 taskkill -f -t -im “进程名称”
+
+# Linux
+# FinelShell（连接linux终端工具）
+# 需要提前安装java、数据库等环境，在Navicat 新建连接(linux-ip)》》新建数据库，导入数据
+# 上传程序包*.jar到home目录》》java -jar *.jar
+# 后台启动，指定文件保存日志 nohup java -jar *.jar > server.log 2>&1 &   # >(去向)
+# 查询进程 ps -ef | grep "java -jar" // grep过滤，找到"java -jar"指令
+# 杀死程序 kill -9 PID
+# 查看日志 >ll>cat server.log
+
+# 判断临时属性是否生效》》右上角application》》Edit configuratios》》
+# 左侧选中程序》》configuratio》》environment》》program argument》》--server.port==9000 --a=b，
+# 所配置的临时属性会传到args，即生效。
+

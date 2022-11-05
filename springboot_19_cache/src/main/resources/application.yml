@@ -1,0 +1,36 @@
+server:
+  port: 8002
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+#  cache:
+#    type: ehcache  # 默认simple
+#    ehcache: # 默认 ehcache.xml
+#      config: ehcache.xml
+  cache:
+    type: redis  # 使用redis缓存需要先启动它   # redis-server.exe redis.windows.conf # redis-cli.exe # keys * # shutdwon # flushdb 清除数据
+    redis:
+      # use-key-prefix: true  # 前缀
+      # cache-null-value: false # 是否缓存空值
+      # key-prefix: sms_ # 加前缀
+      time-to-live: 10s # 缓存10s
+  redis:
+    host: localhost
+    port: 6379
+
+
+mybatis-plus:
+#  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+      id-type: auto # 数据库id自增
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+

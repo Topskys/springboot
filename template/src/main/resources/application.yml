@@ -1,0 +1,4 @@
+# 修改文件名为application.yml
+# 配置服务端口
+server:
+  port: 8002

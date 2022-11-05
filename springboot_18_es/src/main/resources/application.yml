@@ -1,0 +1,27 @@
+# 整合低版本es
+server:
+  port: 8002
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+
+#  elasticsearch: # 低版本  高版本sb没有适配这里不用配置
+#    rest:
+#      uris: http://localhost:9200
+
+
+mybatis-plus:
+  #  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+      id-type: auto # 数据库id自增
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+
+

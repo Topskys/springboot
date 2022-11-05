@@ -1,0 +1,58 @@
+
+server:
+  port: 8001
+
+# HikarDataSource mysql
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC
+#    driver-class-name: com.mysql.cj.jdbc.Driver  # 默认hikar，加hikar: ，就会抛出Access denied for user ''@'localhost' (using password: NO)这个错误。
+#    username: root
+#    password: 123456
+#  jdbc:
+#    template:
+#      max-rows: 500 # 查询函数
+#      fetch-size: -1 # 缓存行数
+#      query-timeout: # 超时时间
+
+
+
+#spring:
+#  datasource:
+#    druid: # hikar 、
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+#      username: root
+#      password: 123456
+#      # type: com.alibaba.druid.pool.DruidDataSource # 自动装配
+
+#mybatis-plus:
+#  #  mapper-locations: classpath:mapper/*.xml
+#  global-config:
+#    db-config:
+#      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+#      id-type: auto # 数据库id自增
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+
+
+# H2 数据库
+spring:
+  h2:
+    console: # 开启h2数据库控制台
+      path: /h2 # http://localhost:8001/h2
+      enabled: true
+  # H2 第一次使用需要初始化
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 123456
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,38 @@
+# 修改文件名为application.yml
+# 配置服务端口
+server:
+  port: 80
+
+# 开启debug，方式一，只是与含log.debug()的类有关
+# debug: true
+
+# 方式二，会debug整体应用日志
+logging:
+  # 分组
+  # group:
+  # ebank: com.example.springboot.controller,com.example.springboot.service
+  # iservice: com.alibaba
+  level:
+      root: debug  # info 、warn、error
+
+      # 设置某个包的日志级别
+      # com.example.springboot.controller: debug
+
+    # 设置分组，对某个组设置日志级别
+    # ebank: warn
+
+  # 设置日志模板格式
+  pattern:
+    # console: "%d - %m %n"
+    # console: "%d - %clr(%5p) %n"
+    # console: "%d - %clr(%5p) --- [%16t] %c %n"
+    console: "%d - %clr(%5p) --- [%16t] %clr(%-40.40c){cyan} : %m %n"
+
+  # 输出日志文件
+  # file:
+    # name: server.log
+  # 设置日志文件大小，超过会新建另一个日志文件
+  # logback:
+    # rollingpolicy:
+      # max-file-size: 4KB
+      # file-name-pattern: server.%d{yyyy-MM-dd}.%i.log # server.2022-10-26.第几个日志文件.log

@@ -1,0 +1,18 @@
+
+# 配置相关信息
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3307/my_db_01 # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: 123456
+#    type: com.alibaba.druid.pool.DruidDataSource # 整合Druid 时配置 方法 1
+
+
+spring:
+  datasource:
+    druid: # 整合Druid 时配置 方法 2
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3307/my_db_01?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 123456

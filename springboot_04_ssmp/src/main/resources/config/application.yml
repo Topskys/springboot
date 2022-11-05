@@ -1,0 +1,50 @@
+# 2022年8月23日22:02:46
+
+# 项目经理配置文件
+# resource/config/application.yml 3 配置文件比./application.yml 4级别高，
+# 不同属性可共存，层叠叠加，
+# 如果有相同的属性，则./config/application.yml属性将会覆盖./application.yml的属性
+
+#server:
+#  port: 8003
+
+
+
+
+
+# 运维人员配置文件
+# 在程序包*.jar同级目录创建application.yml 2
+
+
+# 银行经理配置文件
+# 在程序包*.jar同级目录创建config/application.yml 1
+
+
+# 配置文件层级关系，高到底
+# 运维阶段
+# 在程序包*.jar同级目录创建config/application.yml 1
+# 在程序包*.jar同级目录创建application.yml 2
+# 开发阶段
+# resource/config/application.yml 3
+# resource/application.yml 4
+
+
+
+# 自定义配置文件
+
+# 创建resource/selfConfig.properties，由于识别不到application.*,
+# 可能不会有代码提示。
+# 让自定义配置文件生效》》在右上角Edit configurations的program arguments配置，
+# 使用临时属性：
+# --spring.config.name=selfConfig （name）
+# or
+# --spring.config.location=classpath:/selfConfig.*,classpath:/selfConfigMore.*（path，最后一个配置文件生效）
+
+
+
+
+# 多环开发环境
+
+
+
+

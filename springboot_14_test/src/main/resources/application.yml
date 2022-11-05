@@ -1,0 +1,34 @@
+#test:
+#  prop: "YY"
+
+server:
+  port: 8001
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/database?serverTimezone=UTC # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+
+
+mybatis-plus:
+  #  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: tbl_ # 表前缀，方便Mybatis-plus映射
+      id-type: auto # 数据库id自增
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 为方便调试，开启MyBatis-plus日志，注意，上线需要关闭日志
+
+
+testcase:
+  book:
+    id: ${random.int}
+    id2: ${random.int(10)}
+    type: ${random.int(5,10)} # or [5,10] 、@5,@10  and so on
+    name: itheima${random.value}
+    uuid: ${random.uuid}
+    publishTime: ${random.long}

@@ -1,0 +1,20 @@
+# 第一种导入mybatis-plus 修改服务 https://start.spring.io --> https://start.aliyun.com就可以找到包，版本较低
+# 第二种先创建项目只选MySQL Driver，打开https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter复制依赖，在*.xml手动导入mybatis-plus依赖包
+
+# 配置相关信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/my_db_01 # mysql 5 和 8 驱动的区别，5需要配置时区?serverTimezone=UTC 且 修改为 driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+
+
+# 设置MP相关配置
+mybatis-plus:
+#  global-config:
+#    db-config:
+#      table-prefix: yourTableStr_   # 給所有表添加 str_ 前綴
+  configuration: # 配置MP映射帶有下劃線的字段
+    map-underscore-to-camel-case: false # mybatis-plus默认开启了下滑线转换驼峰 需要关闭（设置为false）
+

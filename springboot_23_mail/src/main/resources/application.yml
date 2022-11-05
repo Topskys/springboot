@@ -1,0 +1,10 @@
+server:
+  port: 8002
+
+
+# 发送邮件配置
+spring:
+  mail:
+    host: smtp.qq.com # smtp.163.com 提供商
+    username: 2477350343@qq.com
+    password: yuxbpsanuyxneafg
